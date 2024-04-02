@@ -60,3 +60,118 @@
 ```
 
 ### 2.4 html 문서 작업 순서
+
+- 디자인 레이아웃 보기
+- https://chromewebstore.google.com/detail/gofullpage-full-page-scre/fdpohaocaechififmbbbbbknoalclacl
+: 디자인 파일은 /public/www/assets 폴더에 보관
+- html 의 태그의 활용 이전에 꼭 체크 해 보자.
+: https://caniuse.com/ <-확인 사이트
+- 디자인을 살펴보고 영역을 구분하는 작업 진행
+: 레이아웃을 위한 영역 (div 태그)
+: 내용별 배치 영역 (시멘틱 태그 활용 추천)
+: 태그가 내용을 설명하는 역할을 시멘틱
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오브레인 Blog</title>
+</head>
+<body>
+    <!-- 전체 레이아웃 -->
+    <!-- 배치를 위한 태그 - div-->
+    <div class="wrap">
+        <!-- 상단 레이아웃 -->
+        <header class="header"></header>
+        <!-- 메인 레이아웃 -->
+        <main class="main"></main>
+        <!-- 하단 레이아웃 -->
+        <footer class="footer"></footer> 
+    </div>
+    </div>
+</body>
+</html>
+```
+- 참고사항
+: camelCase
+: PscalCase
+: snake_case
+- div 구조를 이용해서 뼈대를 잘 만드는 것이 실력
+:<div class = "wrap">내용</div> 무조건 기본
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오브레인 Blog</title>
+</head>
+<body>
+    <!-- 전체 레이아웃 -->
+    <!-- 배치를 위한 태그 - div-->
+    <div class="wrap">
+        <!-- 상단 레이아웃 -->
+        <header class="header">
+            <!--상단 로고 -->
+            <div class="header-logo"></div>
+            <!--상단 메뉴 -->
+            <div class="header-navi"></div>
+        </header>
+        <!-- 메인 레이아웃 -->
+        <main class="main">
+            <!-- 메인 상단 -->
+            <div class="main-top"></div>
+                <!-- 슬라이드 -->
+                <div class="main-top-slide"></div>
+                <!-- 타이틀 배너 -->
+                <div class="main-top-banner"></div>
+            <!-- 메인 하단 -->
+            <div class="main-bottom">
+                <!-- 메인 리스트 영역 -->
+                <div class="main-bottom-list">
+                    <!-- 새글 리스트 -->
+                    <div class="main-bottom-list-news"></div>
+                    <!--배너 리스트-->
+                    <div class="main-bottom-list-banner"></div>
+                    <!-- 추천글 리스트 -->
+                    <div class="main-bottom-list-picks"></div>
+                </div>
+                <!-- 메인 카드 영역 -->
+                <div class="main-bottom-cards">
+                    <!-- 카드 슬라이드 -->
+                    <div class="main-bottom-cards-slide"></div>
+                </div>
+            </div>
+        </main>
+        <!-- 하단 레이아웃 -->
+        <footer class="footer">
+            <!-- 하단 사이트 정보 및 사이트 맵 -->
+            <div class="footer-top"></div>
+                <!-- 회사소개 -->
+                <div class="footer-top-info"></div>
+                <!-- 사이트맵-->
+                <div class="footer-top-sitemap"></div>
+                
+            <!-- 하단 카피라이트 및 sns 링크-->
+            <div class="footer-bottom">
+                <!-- 카피라이터 -->
+                <div class="footer-bottom-copyright"></div>
+                <!-- SNS 목록 -->
+                <div class="footer-bottom-sns"></div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+```
+
+## 3. Git 기초 명령어
+### 3.1. git으로 관리할거예요.(초기화 : 한번만)
+-`git init`
+
+### 3.2. 깃으로 관리하는 파일을 추가해주기(매일 퇴근전 or 필요시 언제나)
+-`git add .`
+
+### 3.3 깃으로 작업 내역을 기록해 둔다.(메모 매일 퇴근전, 필요시)
+-`git commit`
