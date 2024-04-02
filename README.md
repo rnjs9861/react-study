@@ -175,3 +175,8 @@
 
 ### 3.3 깃으로 작업 내역을 기록해 둔다.(메모 매일 퇴근전, 필요시)
 -`git commit`
+### 3.4 깃을 깃허브로 업로드 한다.
+-`git remote add origin https주소`
+-`git remote -v`
+### 3.5 깃을 깃허브로 push 후 퇴근 한다. (매일 퇴근전, 필요시)
+-`git push -u origin main`
