@@ -319,3 +319,152 @@ window.addEventListener("load", function () {
   width: 20px !important;
 }
 ```
+
+# js4장
+
+- var 변수명 = 변수값;
+- let 변수명 = 변수값;
+- const 변수명 = 변수값;
+
+```txt
+호이스팅(hoisting)은 변수, 함수를 선언하지 않았는데도 사용할 수 있음.(hoisting 이 일어나지 않도록 주의: var 쓰지 말자)
+```
+
+# css의 opacity 와 position의 이해.
+
+- opacity 는 DOM을 내용까지도 투명도가 적용된다.
+- position
+  : position 중에 absolute 로 픽셀 위치 설정의 경우 주의
+  : 반드시 position 코드가 바깥 영역에도 있어야 합니다.
+  : position 중에 fixed 는 웹브라우저를 기준으로 배치
+  : fixed 는 반드시 left, right, bottom 을 주자
+  : fixed 는 보통 z-index 를 준다.
+  : fixed 는 높이에 반영이 안되므로 주의하자.(레이아웃 배치 문제)
+
+```css
+대상 {
+  position: relative;
+}
+대상 {
+  position: absolute;
+}
+대상 {
+  position: fixed;
+}
+```
+
+-주의하자
+
+```css
+.box-wrap {
+  position: relative;
+  margin: 0 auto;
+  width: 600px;
+  height: 300px;
+  background: orange;
+}
+.box {
+  position: absolute;
+  right: 80px;
+  bottom: 20px;
+
+  width: 200px;
+  height: 200px;
+  background: red;
+}
+```
+
+# js 윈도우 스크롤의 위치를 알아내기
+
+```js
+window.addEventListner("scroll", function () {
+  //하고 싶은 일
+});
+```
+
+```js
+window.addEventListner("scroll", function () {
+  //스크롤바의 위치
+  const scY = window.scrollY;
+});
+```
+
+# js 로 css의 클래스 동적으로 활용하기
+
+```js
+// DOM 찾아서 변수로 레퍼런스 하기
+const tags = document.querySelector(".클래스명"); //. 안쓰면 동명의 태그가 선택 됨
+// DOM 을 이용해서 선택한 곳에 적용된 css 클래스 목록 추가
+tags.classList.add("클래스명");
+// DOM 을 이용해서 선택한 곳에 적용된 css 클래스 목록 제거
+tags.classList.remove("클래스명");
+// DOM 을 이용해서 선택한 곳에 적용된 css 클래스 목록 추가/제거
+tags.classList.toggle("클래스명");
+// DOM 을 이용해서 선택한 곳에 적용된 css 클래스 목록 포함여부
+tags.classList.contain("클래스명");
+```
+
+# js 의 함수란? 1번
+
+- 동일한 코드가 2번 이상 반복되면 함수를 만들려고 노력하자.
+- 반복은 되지 않더라도 하나의 기능이 너무 복잡하면 함수를 만들려고 노력하자.
+- 복잡하지는 않는데 코드가 너무 길어지면 함수로 묶어주려고 노력하자.
+- 실행의 결과가 그때, 그때 다른 경우에도 함수를 만들자.
+
+- 함수 정의 문
+
+```js
+function 함수이름() {
+  //할 일
+}
+```
+
+- 함수 실행/호출(call) 문
+
+```js
+함수이름();
+```
+
+```js
+//함수 선언
+function 적절한동사() {
+  // 하고 싶은 일 작성
+}
+
+// 함수 사용하기(함수호출(어딘가 만들어 둔걸 쓴다))
+적절한동사();
+//e.g. (함수 체이닝)
+fetch().then().then().catch();
+```
+
+- 함수는 무조건 1개의 값을 리턴하도록 규정되어 있습니다.
+- 리턴이라는 것은 함수 실행 후() 값을 돌려주는 것을 말합니다.
+
+```js
+function 함수명() {
+  //return undefined; 몰래 들어가있다.
+}
+함수명();
+```
+
+# js 의 매개변수란? 3번
+
+- 초기 기능 즉, 함수를 정의하기 전에 기능 상 자주 변하는 데이터를 고민한다.
+- 기능은 스크롤시 특정 위치 보다 커지면 css 추가하기
+- 이전 코드는 좋지 않은 코드라고 생각이 든다.
+- 함수는 스스로 지역 즉, Local 영역(Scope) 에서 처리되는 것이 좋다고 봐요.
+- `처리` 라는 말은 변수를 찾는다 던가
+- `처리` 라는 말은 잘못된 값이 전달 되어서 오류가 나는 것을 방지하는 것을 말합니다..
+
+```js
+// 홍길동에게 줄 함수
+const a = 5;
+const b = 6;
+function 나누기(_num1, _num2) {
+  if (_num2 === 0) {
+    alert("나눗셈에서 0은 안됩니다");
+  }
+  return _num1 / _num2; //함수에선 매개변수로 접근하자 일반변수(a,b) 가 아니라
+}
+나누기(a, b);
+```
