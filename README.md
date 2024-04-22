@@ -410,6 +410,7 @@ tags.classList.contain("클래스명");
 - 반복은 되지 않더라도 하나의 기능이 너무 복잡하면 함수를 만들려고 노력하자.
 - 복잡하지는 않는데 코드가 너무 길어지면 함수로 묶어주려고 노력하자.
 - 실행의 결과가 그때, 그때 다른 경우에도 함수를 만들자.
+- 왜 화살표 함수를 만들까?
 
 - 함수 정의 문
 
@@ -468,3 +469,231 @@ function 나누기(_num1, _num2) {
 }
 나누기(a, b);
 ```
+
+# 데이터 타입(Data Type) : 자료의 종류
+
+```
+데이터 타입 ( Data Type ) : 자료형
+타입 이라는 말이 자료의 형태
+JS의 리터럴로 처리될 수 있는 자료의 종류
+
+타입 스크립트 : 데이터 종류를 표현해 주는 방식
+
+    '5'   , "55", `555`
+    'a'   , "ab", `55555`
+
+    "안녕
+      반가워
+    "
+    `안녕 ${100}
+      반가워
+    }
+    `
+
+    undefined 와  null 헷갈려요.
+    const a = undefined; (모르겠다.)
+    const b = null; (개발자가 직접 진짜 값이 비었다고 알려줌)
+
+    Symbol 은 중복되지 않는다고 보장하는 값 타입
+    Symbol()
+
+    데이터 타입 ( Data Type ) : 자료형
+    불변성(immutable) : 데이터 값이 변경될 수 없다.
+    데이터는 immutable 해야 합니다.
+    상태는   immutable 해야 합니다.
+    state는  immutable 해야 합니다.
+
+    1 = 1;
+
+
+    가변성(mutable) : 데이터 값이 변경될 수 있다.
+
+
+    원시데이터 6가지가 있는데 immutable 한 데이터 타입입니다.
+
+    number   1
+    string   'a'
+    undefined undefined
+    boolean    true, false
+    null       null
+    symbol     Symbol() 만들어진 값은 변경 불가
+
+     복합형 데이터 객체
+     객체는 원시데이터를 모아서 저장하고 관리하는 것.
+
+    // 묶어라, Block
+    const hong = {
+        age: 20,
+        marry : true
+     }
+
+
+     // 내가 c 라는 이름으로 저장할 거야
+     // c 라는 공간은 글자를 보관할 거야
+     // 그러니, 공간을 좀 마련해 줄래?
+
+     // C 를 사용하는 프로그래머는
+     char c = 'a'
+     int num = 5;
+
+     // js 를 사용하는 프로그래머는
+     const c = 'a';
+     const num = 5;
+
+     // ts 를 사용하는 프로그래머는
+     const c:string = 'a';
+     const num:number = 5;
+
+
+     // 오늘, 그리고 다음을 위해서 꼭 알아야 하는 단어
+
+     1. 데이터 타입 : 자료(리터럴 값)의 종류
+
+     2. js 에서는 값 리터럴에 따라 변수의 종류를 타입추론 한다.
+
+     3. 타입을 추측해서 프로그래머에게 물어보지않고 타입을 변경한다. (암묵적 타입변경)
+
+        let a = 1;
+        a = "안녕";
+
+        2번 3번은 원하지 않는 결과를 언젠가 실행됩니다.
+        의도하지 않은 오류를 일으킨다.
+
+        TypeScript
+
+        let a:number = 1;
+        a = "안녕"; // 오류 발생
+
+// 코딩 할 때 스스로 고민해 보자.
+
+1.  꼭 필요한 경우인지를 파악하고 변수를 만들자.
+2.  변수 유효범위는 좁게 (블록을 가능하면 쓰자)
+3.  전역변수는 가능하면 만들지 말자.
+4.  변수는 상수를 쓰세요.
+
+    let a = 1; (X)
+
+    const count = 1;
+
+    {
+    let count = 2;
+    }
+
+
+
+```
+
+# 함수의 이해 7번
+
+1. 함수를 만들어야겠다고 판단하는 케이스
+
+- 동일한 코드가 2번 이상 반복되면 함수를 만들려고 노력하자.
+- 반복은 되지 않더라도 하나의 기능이 너무 복잡하면 함수를 만들려고 노력하자.
+- 복잡하지는 않는데 코드가 너무 길어지면 함수로 묶어주려고 노력하자.
+- 실행의 결과가 그때, 그때 다른 경우에도 함수를 만들자.
+
+2. 왜 화살표 함수를 만들까?
+
+- 트렌드를 쫓아가자.
+- this 를 정확히 지정하기 위해서 활용한다.
+- 코드가 해석하기 더 어려워집니다.
+
+```js
+const say = () => {
+  console.log("안녕", this);
+};
+```
+
+: 매개 변수가 있는 경우
+
+```js
+//화살표 함수 연습
+function say(_who) {
+  console.log("안녕", _who, this);
+}
+```
+
+: stepp 1.
+
+```js
+//화살표 함수 연습
+say(_who) {
+  console.log("안녕", _who, this);
+}
+```
+
+: stepp 2.
+
+```js
+//화살표 함수 연습
+const say = (_who) => {
+  console.log("안녕", _who, this);
+};
+```
+
+- this 를 정확히 지정하기 위해서 활용한다.
+  : 화살표 함수를 사용하면 일반적으로 큰 고민없이 사용하면 됩니다.
+  : 하지만, 함수안에 this를 작성하면 상황이 달라진다.
+  : 화살표 함수에서 this 는 window 를 가리킵니다.
+  : 결혼은 화살표 함수에서 this 를 사용한다면 console.log(this) 확인필수!
+  : 화살표 함수는 예전 일반 함수에서 window 를 참조하지 못하는 문제를 해결함.
+
+```js
+// this 의 차이
+const btWrap = document.querySelector(".bt-wrap");
+// 일반 함수는 this가 타이핑이 된 곳을 가리킨다.
+btWrap.addEventListener("click", function () {
+  console.log(this);
+});
+// 화살표 함수는 this 가 window를 가리킨다.
+btWrap.addEventListener("click", () => {
+  console.log(this);
+});
+```
+
+# 배열의 이해
+
+- [요소, 요소, 요소, 요소]
+  : 요소로 담을 수 있는 자료형은 7가지 입니다.
+- 배열의 속성(배열을 위한 특별한 변수)은 오직 1개가 있습니다.
+  : length 가 있어요. (요소의 개수)
+- 배열의 메소드(배열을 위한 특별한 함수)는 너무 많다.
+- 상당히 많은 메소드(배열을 위한 함수) 가 있습니다.
+
+- 배열.forEach(요소=>{}), 배열.map(요소=>{}), 배열.filter(요소=>{}), 배열.find(요소=>{})
+
+- 배열의 요소를 하나씩 접근해서 활용하기
+- 배열.forEach()
+
+  ```js
+  // 배열이라면 반복하자.
+  result.forEach((item) => {
+    const tag = `<a href=${item.link} class="list-box">
+        <div class="list-box-img br-20" style="background: url('./images/${item.imgpath}') no-repeat center; background-size: cover"></div>
+        <div class="list-box-cate">
+          <img src="./images/icon/${item.icon}" alt="${item.category}" />
+          <span style="color:${item.txtcolor};">${item.category}</span>
+        </div>
+        <p class="list-box-title">${item.title}</p>
+        <span class="list-box-day">${item.day}</span>
+        </a>`;
+    allTag = allTag + tag;
+  });
+  ```
+
+const 객체 = {
+
+         키명 : 키값
+         age :  10              프로퍼티(객체.속성) 라고 합니다.
+
+         키명 : 키값
+         say  : function(){}     메소드(객체.기능) 라고 합니다.
+
+     }
+
+키값이 일반 변수인 경우- 프로퍼티(속성) 라고 한다
+
+키값이 함수인 경우- 메소드(기능) 라고 부른다
+
+객체에 정의한 '변수'를 속성(Property)라고 한다.
+객체에 정의한 '함수'를 메소드 라고 한다.
