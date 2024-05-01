@@ -993,6 +993,299 @@ const result = "안녕" ?? "없군요"    결과값은 "안녕"
 # 카카오 브레인 블로그 사이트
 
 - 반드시 저작권을 밝혀야 한다.
-- 첫 화면만 연습 하면 됩니다.
-
+- 첫 화면만 연습 하면 됩니다. (첫 화면이 가장 난이도가 높다)
 - 리액트 작업
+
+# js 10장
+
+```txt
+일반 변수는 값이 보관되고    값이 복사된다.
+
+    객체 변수는 주소가 보관되고 주소가 복사된다.
+    : 중요한 것은 객체를 복사하는 것은 주의하자. (얕은복사)
+    : 가능하면 객체는 깊은 복사를 활용하도록 노력하자.
+```
+
+# 깃 협업 순서 필수
+
+# js 12장
+
+# js 13장
+
+스코프(scope) or 유효범위 : 대상을 출력할 때 찾을 범위
+
+- 대상 : 함수, 변수, 클래스 등...
+
+var 변수 와
+
+let or const 변수가 차이가 크다
+
+매개변수는 함수 내부에만 존재 가능
+
+//함수의 바깥쪽->PW `전역 스코프(Global Scope)`
+var age = 15;
+function say() {
+// `지역 스코프(Local Scope)`
+console.log(age);
+console.log(name);
+}
+
+say(); // age가 함수 내에 있나?
+undefined네... 그럼 함수의 scope { } 밖으로 나가서 찾게된다. 어 15 있네
+name();// undefined
+
+함수에서 전역(글로벌) 영역을 다루고 있다
+------>비순수하다
+
+var age = 15;
+
+function say() {
+var age =100;
+console.log(age);
+}
+
+say(); //100 자기꺼 있으면 자기꺼 씀 -> 순수 함수
+
+var var_1 = 1;
+if(true) {
+var var_2 = 2;
+
+    if(true) {
+      var var_3 =3;
+    }
+
+}
+function say() {
+var var_4 = 4;
+}
+
+console.log(var_1)
+console.log(var_2)
+console.log(var_3)
+console.log(var_4) ---- not defined.
+
+렉시컬 환경 (실행과 작성위치)
+
+JS는 렉시컬 스코프 를 기본으로 합니다.
+
+: js 는 대상이 코딩 즉, 작성할 때 스코프가 정해진다.
+: 즉, 그때 그때(실행할때 마다) 스코프가 달라지지 않는다.
+var age = 15;
+
+    function say() {
+
+            age += 1;
+       var id = "hong";
+    }
+
+    say();
+
+var age는 global, not local
+한번 밖에서 정해지면 함수 안에서 실행된다고 달라지는게 아님
+
+스코프 체인
+없을 시 상위 범위 쪽으로 찾아서실행되는것
+
+---예습---
+
+let age = 1;
+
+if(true) {
+let age = 2;
+
+    if(true) {
+      let age =3;
+    }
+
+}
+
+console.log(age) // 1
+let은 중괄호가 있으면 function이 아니라도 건너 뛴다!!
+
+---
+
+var age = 1;
+
+if(true) {
+var age = 2;
+
+    if(true) {
+      var age =3;
+    }
+
+}
+
+console.log(age) //3
+
+function이 아니면 다 덮어 씀
+
+var 쓰지 마
+
+이름이 같으면 function 아닐 시 다 덮어씀...
+
+let age = 1;
+
+if(true) {
+let age = 2;
+
+    if(true) {
+      let age =3;
+    }
+
+}
+
+console.log(age) // 1
+
+# React 기초 1
+
+1. 사전준비
+
+   : node.js 설치 (nvm 을 통해서 버전 교체 가능) 교체 할 줄 알아야 한다.
+
+   : npm은 자동으로 설치됨.
+
+   : yarn은 직접 설치하여야 함.
+
+   :github에 repository 생성
+
+2. 프로젝트 생성법
+
+   : React js 버전으로 진행. (CSR) Client Side Rendering
+
+   : 리액트 프로젝트
+
+   npx create-react-app ./ —template typescript
+
+3. 진행순서
+
+   : public 폴더에 www 폴더 생성 후 퍼블리싱 작업 진행 밑 테스트
+
+   : React ts 버전으로 진행.
+
+   : Next js 버전으로 진행. (SSR) Server Side Rendering
+
+   : Next ts 버전으로 진행.
+
+   → 가능하면 ts로
+
+   수업순서 React js React ts Next ts
+
+4. 프로젝트 내용 기본 파악하기
+
+3.1. node_modules
+
+: npm 또는 yarn 으로 다운로드 받은 파일 보관 폴더
+
+: npm install 라이브러리명을 이용하여 다운로드 받고 활용
+
+: 만약 프로젝트가 라이브러리 등의 오류가 발생했다면
+
+- node_modules 폴더 삭제
+- package-lock.json 파일 삭제 (노드모듈에서 설치한 목록 보관)
+- 이후 `npm i` 를 작성 후 실행(터미널)
+
+: 깃허브에 push 대상에서 제외 하기 위해 .gitignore 에 자동 입력
+
+3.2. public 폴더
+
+꼭 기억하세요 .압축 안됩니다. Webpack 에서 제외됨
+
+index.html - 최초 웹서비스 실행시 실행되는 파일명. (파일명 변경 불가)
+
+lang=”ko” 수정
+
+favicon 아이콘 수정
+
+SEO 관련 내용은 별도 추가(네이버 검색, 구글 검색, GA4 적용 예정)
+
+apple-touch 아이콘 수정
+
+title 내용 수정
+
+manifest.json 은 추후 내용 수정필요
+
+(https://web.dev/articles/add-manifest?hl=ko)
+
+id=”root” 는 리액트 미리보기 및 결과물이 배치되는 장소
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <!-- SEO 적용 필요: 네이버 검색 및 구글 검색 등록 예정, GA4 예정 -->
+    <meta name="description" content="카카오 브레인 블로그 클론 코딩" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>카카오 브레인블로그</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+
+:
+
+: robots.txt
+
+- 검색엔진 로봇이 내용을 접근해서 보관하는 여부 설정
+- 상세 경험은 네이버 및 구글 검색엔진 등록시 실습
+
+  3.3 src 폴더
+
+- webpack 의 대상폴더
+- index.js
+  : 리액트 실행시 최초 실행되는 파일
+
+```js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+//아래 라이브러리는 구글의 웹 성능 리포트 기능
+//import reportWebVitals from "./reportWebVitals"; 쓰지마삼
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  // <React.StrictMode>
+  <App />
+  // </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// reportWebVitals();
+```
+
+- TDD 관련 파일 제거 (Test Driven Develop)
+  : 테스트 주도 개발
+  : App.test.js 제거
+  : SetupTests.js 제거
+
+- 성능 측정 파일 제거
+  : reportWebVitals.js 제거
+
+- App.js 는 최초 화면에 보여지는 내용
+
+  3.4. .gitignore 파일
+
+- 깃허브 파일 예외 사항 기재
+- 폴더 및 파일 작성하면 제외됨.
+- 추후 내용 작성 필요(예. 인증키)
+
+  3.5. package-lock.json
+
+- node_modules 에서 사용된 라이브러리들의 버전 보관
+
+  3.6. package.json
+
+- node.js 프로젝트 생성시 기초 정보 관리내용
+- dependencies 항목이 중요합니다.
+  : 프로젝트에 실제 활용한 라이브러리 목록(파악용도)
+  : 개발/최종 빌드한 소스에 포함이 되는 라이브러리들 목록
+  : npm start 개발시 포함
+  : npm build 배포시 포함
